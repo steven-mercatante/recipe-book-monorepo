@@ -1,0 +1,30 @@
+import Markdown from "markdown-to-jsx";
+
+interface Props {
+  items: string[];
+  showStepNum?: boolean;
+}
+
+export default function ItemList({ items, showStepNum }: Props) {
+  return (
+    <div className="item-list">
+      <ul>
+        {items.map((item, i) => {
+          return (
+            <li className="mb-2" key={i}>
+              {showStepNum && (
+                <p>
+                  <strong>Step {i + 1}</strong>
+                </p>
+              )}
+              <Markdown options={{ forceInline: false }}>
+                {/*TODO: clean up should happen when saving to DB*/}
+                {item.trim()}
+              </Markdown>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
