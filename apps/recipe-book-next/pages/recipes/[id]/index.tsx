@@ -21,6 +21,7 @@ interface Params extends ParsedUrlQuery {
   id: string;
 }
 
+// TODO: extract to "ui" package
 export default function ViewRecipe({
   canUserEditRecipe,
   canUserSaveRecipe,

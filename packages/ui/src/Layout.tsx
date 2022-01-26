@@ -1,28 +1,28 @@
 import React, { useState } from "react";
-import { useUser } from "@auth0/nextjs-auth0";
+import {ContentContainer} from "./ContentContainer";
+import { MobileSidebar} from "./MobileSidebar";
+import { useUser } from "@auth0/nextjs-auth0"; // TODO: should this be passed in as a prop?
 import { PlusIcon, ViewListIcon } from "@heroicons/react/outline";
-import MobileSidebar from "./MobileSidebar";
-import { Routes } from "../constants/routes";
-import DesktopSidebar from "./DesktopSidebar";
-import {ContentContainer} from "ui";
-import MobileTopNav from "./MobileTopNav";
-
-const navigation = [
-  { name: "Recipes", href: Routes.ViewRecipes, icon: ViewListIcon },
-  {
-    name: "New Recipe",
-    href: Routes.NewRecipe,
-    icon: PlusIcon,
-  },
-];
+import {DesktopSidebar} from "./DesktopSidebar";
+import {MobileTopNav} from "./MobileTopNav";
 
 interface Props {
   children: React.ReactNode;
+  routes: any // TODO: real type
 }
 
-export default function Layout({ children }: Props) {
+export function Layout({ children, routes }: Props) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { user } = useUser();
+
+    const navigation = [
+        { name: "Recipes", href: routes.ViewRecipes, icon: ViewListIcon },
+        {
+            name: "New Recipe",
+            href: routes.NewRecipe,
+            icon: PlusIcon,
+        },
+    ];
 
   return (
     <div className="h-full flex">
@@ -30,11 +30,12 @@ export default function Layout({ children }: Props) {
         navigation={navigation}
         setSidebarOpen={setSidebarOpen}
         sidebarOpen={sidebarOpen}
+        routes={routes}
         user={user}
       />
-      <DesktopSidebar navigation={navigation} user={user} />
+      <DesktopSidebar navigation={navigation} routes={routes} user={user} />
       <div className="flex flex-col min-w-0 flex-1 overflow-hidden">
-        <MobileTopNav setSidebarOpen={setSidebarOpen} />
+        <MobileTopNav setSidebarOpen={setSidebarOpen} routes={routes}/>
         <div className="flex-1 relative z-0 flex overflow-hidden">
           <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
             <ContentContainer>{children}</ContentContainer>

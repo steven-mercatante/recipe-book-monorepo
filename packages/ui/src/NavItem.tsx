@@ -1,7 +1,13 @@
+import React from 'react'
 import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import type { INavItem } from "types/nav";
+
+export interface INavItem {
+  href: string;
+  name: string;
+  icon: any;
+}
 
 export enum Variant {
   Desktop = "desktop",
@@ -14,7 +20,7 @@ interface Props {
   variant: Variant;
 }
 
-export default function NavItem({ item, handleNavChange, variant }: Props) {
+export function NavItem({ item, handleNavChange, variant }: Props) {
   const router = useRouter();
   const isCurrentRoute = router.pathname === item.href;
 

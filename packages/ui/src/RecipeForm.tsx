@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import {DeleteRecipeDialog, TextField, TextareaField} from "ui";
-import { recipesApi } from "../api";
+import {DeleteRecipeDialog } from "./DeleteRecipeDialog";
+import { TextField} from "./TextField";
+import {TextareaField} from "./TextareaField";
 import { Form, Formik } from "formik";
 import { Recipe } from "recipe-book-api-client";
-import { Routes } from "../constants/routes";
 
+// TODO: can the api method types be imported from the library instead of manually writing them here?
 interface Props {
+  createRecipe: (recipe: Recipe) => any, // TODO: real type
+  updateRecipe: (id: string, recipe: Recipe) => any, // TODO: real type
+  destroyRecipe: (id: string) => any, // TODO: real type
   recipe?: Recipe;
+  routes: any; // TODO: real type
 }
 
 interface SubmitValues {
@@ -16,27 +21,27 @@ interface SubmitValues {
   instructions: string;
 }
 
-export default function RecipeForm({ recipe }: Props) {
+export function RecipeForm({ createRecipe, destroyRecipe, recipe, updateRecipe, routes }: Props) {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const router = useRouter();
 
-  const showDeleteBtn = router.pathname === Routes.EditRecipe;
+  const showDeleteBtn = router.pathname === routes.EditRecipe;
 
   async function handleSubmit(values: SubmitValues) {
     if (recipe?.id) {
-      await recipesApi.updateRecipe(recipe?.id!, {
+      await updateRecipe(recipe?.id!, {
         name: values.name,
         ingredients: values.ingredients,
         instructions: values.instructions,
       });
-      await router.push(Routes.ViewRecipe.replace("[id]", recipe.slug!));
+      await router.push(routes.ViewRecipe.replace("[id]", recipe.slug!));
     } else {
-      const resp = await recipesApi.createRecipe({
+      const resp = createRecipe({
         name: values.name,
         ingredients: values.ingredients,
         instructions: values.instructions,
       });
-      await router.push(Routes.ViewRecipe.replace("[id]", resp.data.slug!));
+      await router.push(routes.ViewRecipe.replace("[id]", resp.data.slug!));
     }
   }
 
@@ -46,8 +51,8 @@ export default function RecipeForm({ recipe }: Props) {
 
   async function handleDeleteConfirm() {
     setShowDeleteDialog(false);
-    await recipesApi.destroyRecipe(recipe?.id!);
-    router.push(Routes.ViewRecipes);
+    await destroyRecipe(recipe?.id!);
+    router.push(routes.ViewRecipes);
   }
 
   return (

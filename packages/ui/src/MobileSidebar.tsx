@@ -1,22 +1,23 @@
-import NavItem, { Variant } from "./NavItem";
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import Link from "next/link";
-import {UserAvatar} from "ui";
+import {UserAvatar} from "./UserAvatar";
+import { NavItem, Variant } from "./NavItem";
+import type { INavItem } from "./NavItem";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { UserProfile } from "@auth0/nextjs-auth0";
-import { Routes } from "../constants/routes";
-import { INavItem } from "types/nav";
 
 interface Props {
   navigation: INavItem[];
+  routes: any; // TODO: real type
   setSidebarOpen: (b: boolean) => void;
   sidebarOpen: boolean;
   user?: UserProfile;
 }
 
-export default function MobileSidebar({
+export function MobileSidebar({
   navigation,
+  routes,
   setSidebarOpen,
   sidebarOpen,
   user,
@@ -97,7 +98,7 @@ export default function MobileSidebar({
                       {user.name}
                     </p>
                     <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
-                      <Link href={Routes.LogOut}>Log out</Link>
+                      <Link href={routes.LogOut}>Log out</Link>
                     </p>
                   </div>
                 </div>

@@ -2,7 +2,8 @@ import { recipesApi } from "api";
 import { Recipe } from "recipe-book-api-client";
 import { ParsedUrlQuery } from "querystring";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import RecipeForm from "components/RecipeForm";
+import {RecipeForm} from "ui";
+import {Routes} from "constants/routes";
 
 interface Props {
   recipe: Recipe;
@@ -12,10 +13,11 @@ interface Params extends ParsedUrlQuery {
   id: string;
 }
 
+// TODO: extract to "ui" package
 export default function EditRecipe({ recipe }: Props) {
   return (
     <div>
-      <RecipeForm recipe={recipe} />
+      <RecipeForm createRecipe={recipesApi.createRecipe} destroyRecipe={recipesApi.destroyRecipe} updateRecipe={recipesApi.updateRecipe} recipe={recipe} routes={Routes}/>
     </div>
   );
 }

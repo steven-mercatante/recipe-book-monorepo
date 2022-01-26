@@ -1,7 +1,8 @@
 import type { AppProps } from "next/app";
 import { UserProvider } from "@auth0/nextjs-auth0";
 import "styles/globals.css";
-import Layout from "../components/Layout";
+import {Layout} from "ui";
+import { Routes } from "constants/routes";
 
 export default function App({ Component, pageProps }: AppProps) {
   /**
@@ -13,7 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <UserProvider user={user}>
-        <Layout>
+        <Layout routes={Routes}>
           <Component {...pageProps} />
         </Layout>
       </UserProvider>

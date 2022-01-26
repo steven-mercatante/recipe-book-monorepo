@@ -1,16 +1,17 @@
-import { Routes } from "../constants/routes";
+import React from 'react'
 import Link from "next/link";
-import {UserAvatar} from "ui";
-import NavItem, { Variant } from "./NavItem";
-import { INavItem } from "../types/nav";
+import {UserAvatar} from "./UserAvatar";
+import { NavItem, Variant } from "./NavItem";
+import type { INavItem } from "./NavItem";
 import { UserProfile } from "@auth0/nextjs-auth0";
 
 interface Props {
   navigation: INavItem[];
+  routes: any; // TODO: real type
   user?: UserProfile;
 }
 
-export default function DesktopSidebar({ navigation, user }: Props) {
+export function DesktopSidebar({ navigation, routes, user }: Props) {
   if (!user) return null;
 
   return (
@@ -20,7 +21,7 @@ export default function DesktopSidebar({ navigation, user }: Props) {
           <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 px-4">
               <strong>
-                <Link href={Routes.Home}>Merc Meals</Link>
+                <Link href={routes.Home}>Merc Meals</Link>
               </strong>
             </div>
             <nav className="mt-5 flex-1" aria-label="DesktopSidebar">
@@ -44,7 +45,7 @@ export default function DesktopSidebar({ navigation, user }: Props) {
                     {user.name}
                   </p>
                   <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-                    <Link href={Routes.LogOut}>Log out</Link>
+                    <Link href={routes.LogOut}>Log out</Link>
                   </p>
                 </div>
               </div>

@@ -7,6 +7,7 @@ interface Props {
   recipes: Recipe[];
 }
 
+// TODO: extract to "ui" package
 function RecipesList({ recipes }: Props) {
   return (
     <div className="recipes-list">

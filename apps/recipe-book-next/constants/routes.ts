@@ -1,3 +1,4 @@
+// TODO: extract to shared package
 export enum Routes {
   Home = "/",
   ViewRecipes = "/recipes",
