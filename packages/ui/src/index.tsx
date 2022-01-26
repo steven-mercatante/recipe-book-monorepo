@@ -1,4 +1,3 @@
-import * as React from "react";
 export * from "./ContentContainer";
 export * from "./DeleteRecipeDialog";
 export * from "./ItemList";

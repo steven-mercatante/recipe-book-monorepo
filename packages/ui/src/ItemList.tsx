@@ -19,7 +19,6 @@ export function ItemList({ items, showStepNum }: Props) {
                 </p>
               )}
               <Markdown options={{ forceInline: false }}>
-                {/*TODO: clean up should happen when saving to DB*/}
                 {item.trim()}
               </Markdown>
             </li>
