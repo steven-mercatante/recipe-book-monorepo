@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationIcon, XIcon } from "@heroicons/react/outline";
 
@@ -7,7 +7,7 @@ interface Props {
   onConfirm: () => void;
 }
 
-export default function DeleteRecipeDialog({ onCancel, onConfirm }: Props) {
+export function DeleteRecipeDialog({ onCancel, onConfirm }: Props) {
   const [open, setOpen] = useState(true);
 
   function handleCancel() {

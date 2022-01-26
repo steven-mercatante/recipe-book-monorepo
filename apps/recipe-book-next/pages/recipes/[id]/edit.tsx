@@ -2,7 +2,7 @@ import { recipesApi } from "api";
 import { Recipe } from "recipe-book-api-client";
 import { ParsedUrlQuery } from "querystring";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import RecipeForm from "../../../components/RecipeForm";
+import RecipeForm from "components/RecipeForm";
 
 interface Props {
   recipe: Recipe;

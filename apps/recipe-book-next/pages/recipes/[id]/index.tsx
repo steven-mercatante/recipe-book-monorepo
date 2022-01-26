@@ -1,10 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
+import {ItemList} from "ui";
 import { recipesApi } from "api";
 import { Recipe } from "recipe-book-api-client";
 import { ParsedUrlQuery } from "querystring";
 import { splitByNewline } from "utils/text";
-import ItemList from "components/ItemList";
 import { getRecipeTags } from "utils/recipe";
 import { GetServerSidePropsContext } from "next";
 import { getSession } from "@auth0/nextjs-auth0";

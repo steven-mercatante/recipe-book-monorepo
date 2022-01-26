@@ -1,7 +1,7 @@
 import { Routes } from "../constants/routes";
 import Link from "next/link";
+import {UserAvatar} from "ui";
 import NavItem, { Variant } from "./NavItem";
-import UserAvatar from "./UserAvatar";
 import { INavItem } from "../types/nav";
 import { UserProfile } from "@auth0/nextjs-auth0";
 

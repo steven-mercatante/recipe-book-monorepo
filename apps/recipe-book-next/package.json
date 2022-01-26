@@ -20,7 +20,8 @@
     "next-http-proxy-middleware": "^1.1.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "recipe-book-api-client": "^0.5.0"
+    "recipe-book-api-client": "^0.5.0",
+    "ui": "*"
   },
   "devDependencies": {
     "@types/node": "17.0.5",

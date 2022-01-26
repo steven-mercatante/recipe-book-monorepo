@@ -1,8 +1,10 @@
+import * as React from "react";
+
 interface Props {
   picture?: string | null;
 }
 
-export default function UserAvatar({ picture }: Props) {
+export function UserAvatar({ picture }: Props) {
   if (!picture) return null;
 
   return (

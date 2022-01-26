@@ -1,3 +1,4 @@
+import * as React from "react";
 import { useField } from "formik";
 
 interface Props {
@@ -5,7 +6,7 @@ interface Props {
   name: string;
 }
 
-export default function TextField({ label, ...props }: Props) {
+export function TextField({ label, ...props }: Props) {
   const [field, meta] = useField(props);
 
   return (

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
+import {DeleteRecipeDialog, TextField, TextareaField} from "ui";
 import { recipesApi } from "../api";
 import { Form, Formik } from "formik";
-import TextField from "./TextField";
 import { Recipe } from "recipe-book-api-client";
-import TextareaField from "./TextareaField";
-import { useRouter } from "next/router";
 import { Routes } from "../constants/routes";
-import DeleteRecipeDialog from "./DeleteRecipeDialog";
 
 interface Props {
   recipe?: Recipe;

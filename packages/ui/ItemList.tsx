@@ -1,3 +1,4 @@
+import * as React from "react";
 import Markdown from "markdown-to-jsx";
 
 interface Props {
@@ -5,7 +6,7 @@ interface Props {
   showStepNum?: boolean;
 }
 
-export default function ItemList({ items, showStepNum }: Props) {
+export function ItemList({ items, showStepNum }: Props) {
   return (
     <div className="item-list">
       <ul>
